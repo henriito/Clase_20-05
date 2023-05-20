@@ -1,0 +1,35 @@
+//Crear Clase
+class HashTable {
+    constructor(size){
+        this.data = new Array(size);
+    }
+
+//Funcion que genera el ID
+    hashMethod(key){
+        let hash = 0;
+        for (let i=0; i< key.length; i++){
+            hash += (key.charCodeAt(i) * i) % this.data.length;
+        }
+        return hash % this.data.length;
+    }
+
+    set(key, value){
+        const address = this.hashMethod(key); //genera un id y lo guarda en address
+        if (!this.data[address]){
+            this.data[address] = []; //Si no existe, crea un arreglo vacío
+        }
+        this.data[address].push([key,value]);
+        return this.data;
+    }
+    get(key){
+        
+    }
+    
+}//Fin de la Clase
+
+const myHashTable = new HashTable(50);
+
+myHashTable.set("maria",1979);
+myHashTable.set("Donald",1990);
+myHashTable.set("Emily",2003);
+myHashTable.set("Juan",2002);
